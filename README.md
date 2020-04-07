@@ -2,7 +2,7 @@
 
 Want to get device orientation data for e.g. driving cars, and other fun stuff? Then this plugin is for you!
 
-<image height=500 src='https://user-images.githubusercontent.com/19492893/78674884-e872fe80-7901-11ea-9773-2b0080494f0b.gif'></image>
+<image height=500 src='https://user-images.githubusercontent.com/19492893/78675527-d180dc00-7902-11ea-8fad-fd5327134d8c.gif'></image>
 
 [Source code](example/main.dart)
 
