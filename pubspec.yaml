@@ -1,8 +1,8 @@
 name: euler_angles
 description: A new flutter plugin project.
 version: 0.0.1
-author:
-homepage:
+author: devxpy@gmail.com
+homepage: https://github.com/Agnee-Transmissions/flutter-euler-angles
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
