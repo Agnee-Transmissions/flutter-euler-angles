@@ -1,14 +1,13 @@
-# euler_angles
+# Flutter Euler angles
 
-A new flutter plugin project.
+Want to get device orientation data for e.g. driving cars, and other fun stuff? Then this plugin is for you!
 
-## Getting Started
+<image height=500 src='https://user-images.githubusercontent.com/19492893/78674884-e872fe80-7901-11ea-9773-2b0080494f0b.gif'></image>
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+[Source code](example/main.dart)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+---
+
+Prior art -
+- [sensors](https://github.com/flutter/plugins/tree/master/packages/sensors) (No support for Euler angles)
+- [aeyrium_sensor](https://pub.dev/packages/aeyrium_sensor) (No yaw and rotation support)

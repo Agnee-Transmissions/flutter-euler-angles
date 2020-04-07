@@ -1,6 +1,6 @@
-import 'dart:async';
-
+import 'package:euler_angles/euler_angles.dart';
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math.dart' show radians;
 
 void main() => runApp(MyApp());
 
@@ -10,45 +10,66 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-//    try {
-//      platformVersion = await EulerAngles.platformVersion;
-//    } on PlatformException {
-//      platformVersion = 'Failed to get platform version.';
-//    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
+        backgroundColor: Colors.black,
+        body: Home(),
       ),
     );
+  }
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
+    var pitch =
+        data.map((it) => it.pitch).reduce((a, b) => a + b) / data.length;
+    var yaw = data.map((it) => it.yaw).reduce((a, b) => a + b) / data.length;
+
+    return Stack(
+      children: <Widget>[
+        if (data != null)
+          Positioned.fill(
+            child: Center(
+              child: Transform.translate(
+                offset: Offset(
+                  radians(yaw) * size.width / 2,
+                  -radians(pitch) * size.height / 2,
+                ),
+                child: Image.asset(
+                  'assets/rocket.png',
+                  width: 50,
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    EulerAngles.addListener(onData);
+  }
+
+  var data = <EulerSensorData>[];
+
+  void onData(EulerSensorData value) {
+    setState(() {
+      if (data.length > 50) {
+        data.removeAt(0);
+      }
+      data.add(value);
+    });
   }
 }

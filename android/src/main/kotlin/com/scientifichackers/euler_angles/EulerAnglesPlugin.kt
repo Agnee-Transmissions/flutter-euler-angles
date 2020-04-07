@@ -103,7 +103,7 @@ class PluginMethods(val ctx: Context) : Application.ActivityLifecycleCallbacks,
         sensorManager.registerListener(
             this,
             accelerometer,
-            SensorManager.SENSOR_DELAY_NORMAL,
+            SensorManager.SENSOR_DELAY_GAME,
             SensorManager.SENSOR_DELAY_UI
         )
 
@@ -111,7 +111,7 @@ class PluginMethods(val ctx: Context) : Application.ActivityLifecycleCallbacks,
         sensorManager.registerListener(
             this,
             magneticField,
-            SensorManager.SENSOR_DELAY_NORMAL,
+            SensorManager.SENSOR_DELAY_GAME,
             SensorManager.SENSOR_DELAY_UI
         )
     }

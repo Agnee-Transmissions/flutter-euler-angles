@@ -32,7 +32,7 @@ class EulerAngles {
     _stream ??= PluginScaffold.createStream(channel, 'sensor').map((it) {
       return EulerSensorData._fromList(it['angles'], it['rotation']);
     });
-    return _stream;
+    return _stream.asBroadcastStream();
   }
 
   static void addListener(void onData(EulerSensorData event)) {
