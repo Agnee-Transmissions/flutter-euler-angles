@@ -53,17 +53,10 @@ class EulerAnglesPlugin : FlutterPlugin, ActivityAware {
         methods?.activity = binding.activity
     }
 
-    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    }
-
-    override fun onDetachedFromActivity() {
-    }
-
-    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    }
-
-    override fun onDetachedFromActivityForConfigChanges() {
-    }
+    override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {}
+    override fun onDetachedFromActivity() {}
+    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {}
+    override fun onDetachedFromActivityForConfigChanges() {}
 }
 
 class PluginMethods(val ctx: Context) : Application.ActivityLifecycleCallbacks,
@@ -74,6 +67,7 @@ class PluginMethods(val ctx: Context) : Application.ActivityLifecycleCallbacks,
 
     var activity: Activity? = null
         set(value) {
+            field?.application?.unregisterActivityLifecycleCallbacks(this)
             value?.let {
                 field = value
                 value.application?.registerActivityLifecycleCallbacks(this)
@@ -171,21 +165,10 @@ class PluginMethods(val ctx: Context) : Application.ActivityLifecycleCallbacks,
 
     fun getDisplayRotation(): Int = activity?.run { windowManager.defaultDisplay.rotation } ?: 0
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-    }
-
-    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
-    }
-
-    override fun onActivityStarted(activity: Activity?) {
-    }
-
-    override fun onActivityDestroyed(activity: Activity?) {
-    }
-
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-    }
-
-    override fun onActivityStopped(activity: Activity?) {
-    }
+    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {}
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+    override fun onActivityStarted(activity: Activity?) {}
+    override fun onActivityDestroyed(activity: Activity?) {}
+    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {}
+    override fun onActivityStopped(activity: Activity?) {}
 }
