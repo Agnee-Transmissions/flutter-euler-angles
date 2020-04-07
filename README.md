@@ -4,7 +4,7 @@ Want to get device orientation data for e.g. driving cars, and other fun stuff? 
 
 <image height=500 src='https://user-images.githubusercontent.com/19492893/78675527-d180dc00-7902-11ea-8fad-fd5327134d8c.gif'></image>
 
-[Source code](example/main.dart)
+[Source code](example/lib/main.dart)
 
 ---
 
