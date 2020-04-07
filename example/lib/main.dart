@@ -31,13 +31,15 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
+    // calculate average values from moving window
     var pitch =
-        data.map((it) => it.pitch).reduce((a, b) => a + b) / data.length;
-    var yaw = data.map((it) => it.yaw).reduce((a, b) => a + b) / data.length;
+        window.map((it) => it.pitch).reduce((a, b) => a + b) / window.length;
+    var yaw =
+        window.map((it) => it.yaw).reduce((a, b) => a + b) / window.length;
 
     return Stack(
       children: <Widget>[
-        if (data != null)
+        if (window != null)
           Positioned.fill(
             child: Center(
               child: Transform.translate(
@@ -62,14 +64,14 @@ class _HomeState extends State<Home> {
     EulerAngles.addListener(onData);
   }
 
-  var data = <EulerSensorData>[];
+  var window = <EulerSensorData>[];
 
   void onData(EulerSensorData value) {
     setState(() {
-      if (data.length > 50) {
-        data.removeAt(0);
+      if (window.length > 50) {
+        window.removeAt(0);
       }
-      data.add(value);
+      window.add(value);
     });
   }
 }
