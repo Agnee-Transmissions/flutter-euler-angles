@@ -1,0 +1,15 @@
+#import "EulerAnglesPlugin.h"
+#if __has_include(<euler_angles/euler_angles-Swift.h>)
+#import <euler_angles/euler_angles-Swift.h>
+#else
+// Support project import fallback if the generated compatibility header
+// is not copied when this plugin is created as a library.
+// https://forums.swift.org/t/swift-static-libraries-dont-copy-generated-objective-c-header/19816
+#import "euler_angles-Swift.h"
+#endif
+
+@implementation EulerAnglesPlugin
++ (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
+  [SwiftEulerAnglesPlugin registerWithRegistrar:registrar];
+}
+@end
